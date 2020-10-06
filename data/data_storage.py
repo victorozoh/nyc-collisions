@@ -8,20 +8,22 @@ connection = psycopg2.connect(DATABASE_URL)
 
 
 def create_database():
+    """
+    This function is responsible for creating a database Table
+    in a Heroku PostGRESQL database
+    """
     # create Motor Vehicles Collision database
     with connection:
         with connection.cursor() as cursor:
             cursor.execute("""
                 DROP TABLE IF EXISTS collisions;
                 CREATE TABLE collisions(
-                    id integer PRIMARY KEY,
                     crash_date date,
                     crash_time text,
                     borough text,
-                    zipcode text,
+                    zip_code text,
                     latitude real,
                     longitude real,
-                    location point,
                     on_street_name text,
                     cross_street_name text,
                     off_street_name text,
@@ -38,24 +40,24 @@ def create_database():
                     contributing_factor_vehicle_3 text,
                     contributing_factor_vehicle_4 text,
                     contributing_factor_vehicle_5 text,
-                    collision_id integer,
-                    vehicle_type_code_1 text,
-                    vehicle_type_code_2 text,
-                    vehicle_type_code_3 text,
-                    vehicle_type_code_4 text,
-                    vehicle_type_code_5 text
+                    collision_id integer
             );
             """)
     print('database successfully created!')
 
-def copy_csv_to_database():
+def load_database():
+    """
+    This function takes the cleaned csv file and copies it
+    to the database table
+    """
     # copy data from csv file to database
     with connection:
         with connection.cursor() as cursor:
-            with open('collisions.csv', 'r') as f:
+            with open('cleaned_collisions.csv', 'r') as f:
                 next(f) # Skip the header row.
                 cursor.copy_from(f, 'collisions', sep=',')
+    print("data upload complete!")
 
 if __name__ == "__main__":
     create_database()
-    #copy_csv_to_database()
+    load_database()

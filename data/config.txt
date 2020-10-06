@@ -1,0 +1,2 @@
+# command to load data into database
+bashCommand = "DATABASE_URL=$(heroku config:get DATABASE_URL -a nyc-mv-collisions) python data_storage.py"
