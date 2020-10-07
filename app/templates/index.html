@@ -6,6 +6,14 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Jquery -->
+    <script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+
+    <!-- mapbox -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+
   </head>
   <body>
 
@@ -15,43 +23,31 @@
         <a class="navbar-brand" href="#">NYC Motor Vehicle Collisions</a>
       </nav>
 
-      <div class="input-group mb-3 mt-5">
-        <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Boroughs</button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Brooklyn</a>
-            <a class="dropdown-item" href="#">Queens</a>
-            <a class="dropdown-item" href="#">Manhattan</a>
-            <a class="dropdown-item" href="#">Bronx</a>
-            <a class="dropdown-item" href="#">Staten Island</a>
-          </div>
+      <form class="mt-5">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Borough</label>
+          <select class="form-control" id="selected_borough">
+            <option value="Brooklyn">Brooklyn</option>
+            <option value="Queens">Queens</option>
+            <option value="Manhattan">Manhattan</option>
+            <option value="Bronx">Bronx</option>
+            <option value="Staten Island">Staten Island</option>
+          </select>
         </div>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
-      </div>
+        <button type="button" class="btn btn-primary" id="display">Display</button>
+      </form>
 
-      <div class="input-group mb-3 mt-5">
-        <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zipcode</button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">11101</a>
-            <a class="dropdown-item" href="#">11236</a>
-            <a class="dropdown-item" href="#">11203</a>
-            <a class="dropdown-item" href="#">10122</a>
-          </div>
-        </div>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
-      </div>
 
-      <button type="button" class="btn btn-primary">Filter</button>
-
-      <div class="container rounded border border-dark mt-5" id="map">
-        <h2>Welcome to NYC</h2>
+      <div class="container rounded border border-dark mt-5" id="map" style="width: 100%; height: 500px;">
       </div>
 
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- display locations on map -->
+    <script src="{{url_for('static', filename='js/display_locations.js')}}"></script>
+
   </body>
 </html>
