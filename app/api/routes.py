@@ -21,12 +21,10 @@ def fetch_records(query, field):
 @api.route('/boroughs/<string:borough>', methods=['GET'])
 def boroughs(borough):
     select_query = "select latitude, longitude from collisions where borough = %s"
-    records = None
-    fetch_records(select_query, borough)
+    return fetch_records(select_query, borough)
 
 
 @api.route('/zipcodes/<string:zipcode>', methods=['GET'])
 def zipcodes(zipcode):
     select_query = "select latitude, longitude from collisions where zipcode = %s"
-    records = None
-    fetch_records(select_query, zipcode)
+    return fetch_records(select_query, zipcode)
