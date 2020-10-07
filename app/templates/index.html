@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NYC Motor Collisions</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">NYC Motor Vehicle Collisions</a>
+      </nav>
+
+      <div class="input-group mb-3 mt-5">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Boroughs</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+      </div>
+
+      <button type="button" class="btn btn-primary">Filter</button>
+
+      <div class="container rounded border border-dark mt-5" id="map">
+        <h2>Welcome to NYC</h2>
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+  </body>
+</html>
