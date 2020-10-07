@@ -11,6 +11,7 @@ def fetch_records(query, field):
     SQL query statement
     """
     records = None
+    field = field.upper()
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(query, (field,))

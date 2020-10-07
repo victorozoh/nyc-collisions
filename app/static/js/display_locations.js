@@ -18,7 +18,6 @@ $(function(){
     $.getJSON("/api/boroughs/".concat(borough), function(data){
       console.log(data[0]);
     });
-    console.log(borough);
   });
 
 });
