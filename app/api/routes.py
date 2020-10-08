@@ -16,16 +16,24 @@ def fetch_records(query, field):
         with connection.cursor() as cursor:
             cursor.execute(query, (field,))
             records = cursor.fetchall()
-    return jsonify(records)
+
+    # perform conversion to geoJSON for display on mapbox
+    features = [{"type": "Feature",
+                    "geometry" : {
+                        "type": "Point",
+                        "coordinates": [rec[0], rec[1]],
+                    },
+                    "properties" : rec} for rec in list(records)]
+    return jsonify(features)
 
 
 @api.route('/boroughs/<string:borough>', methods=['GET'])
 def boroughs(borough):
-    select_query = "select latitude, longitude from collisions where borough = %s"
+    select_query = "select longitude, latitude from collisions where borough = %s"
     return fetch_records(select_query, borough)
 
 
 @api.route('/zipcodes/<string:zipcode>', methods=['GET'])
 def zipcodes(zipcode):
-    select_query = "select latitude, longitude from collisions where zipcode = %s"
+    select_query = "select longitude, latitude from collisions where zipcode = %s"
     return fetch_records(select_query, zipcode)
